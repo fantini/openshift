@@ -2,6 +2,7 @@ FROM registry.redhat.io/ocp-tools-4/jenkins-agent-base-rhel8:v4.14.0
 
 USER root
 
+# Install openjdk 17 and 21
 RUN yum update -y &&\
     yum install -y java-17-openjdk-devel &&\
     yum install -y java-21-openjdk-devel &&\
