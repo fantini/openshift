@@ -3,7 +3,8 @@ FROM registry.redhat.io/ocp-tools-4/jenkins-agent-base-rhel8:v4.14.0
 USER root
 
 RUN yum update -y &&\
-    yum install -y java-17-openjdk-devel which &&\
+    yum install -y java-17-openjdk-devel &&\
+    yum install -y java-21-openjdk-devel &&\
     yum clean all
 
 ENV MAVEN_VERSION=3.9.6 \
@@ -22,10 +23,5 @@ RUN ln -s /usr/lib/jvm/jre-1.8.0 /usr/lib/jvm/java-8-openjdk
 
 # Create link for jdk-11
 RUN ln -s /usr/lib/jvm/jre-11 /usr/lib/jvm/java-11-openjdk
-
-# Install jdk-17
-#RUN wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz -P /tmp && \
-#	tar xf /tmp/openjdk-17.0.2_linux-x64_bin.tar.gz -C /usr/lib/jvm && \
-#	ln -s /usr/lib/jvm/jdk-17.0.2 /usr/lib/jvm/java-17-openjdk
     
 USER 1001    
